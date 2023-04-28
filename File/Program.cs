@@ -32,11 +32,15 @@ namespace File
         static void Add(string name)
         {
             string str;
-            using (StreamReader r = new StreamReader(@"C:\\Users\\Asus\\Documents\\C#AB103\\File\\File\\jsconfig1.json", true))
+            using (StreamReader rd = new StreamReader(@"C:\\Users\\Asus\\Documents\\C#AB103\\File\\File\\jsconfig1.json", true))
             {
-                str = r.ReadToEnd();
+                str = rd.ReadToEnd();
                 
             }
+            List<string> r = JsonConvert.DeserializeObject<List<string>>(str);
+
+            r.Add(name);
+            string serialize = JsonConvert.SerializeObject(r);
         }
 
         static bool Search(string name)
